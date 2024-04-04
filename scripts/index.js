@@ -1,98 +1,25 @@
 
 import recipes from "../data/recipes.js";
+import afficherRecettes from "./templates/display.js";
+import setLists from "./utils/lists.js";
 
 var newList = recipes;
 
+// function pour afficher toutes les recettes à partir d'une liste donné
 function displayRecipes (recettes){
     const display = document.querySelector(".displayRecipes");
-    display.innerHTML = "";
-    if (recettes.length>0){
-        recettes.forEach( item => {
-        let html = "";
-        item.ingredients.forEach(item => {
-            if (item.unit==undefined){
-                html += `<div class="outils">
-                            <p>${item.ingredient}</p>
-                            <p class="sous-titre">${item.quantity}</p>
-                        </div>`;
-            }else{
-                html += `<div class="outils">
-                            <p>${item.ingredient}</p>
-                            <p class="sous-titre">${item.quantity}${item.unit}</p>
-                        </div>`;
-            }
-        })
-        display.innerHTML += `  <div class="carte">
-                                    <div class="sticker">${item.time}min</div>
-                                    <img src="${item.image}" />
-                                    <div class="description">
-                                        <h2>${item.name}</h2>
-                                        <div class="description-recette">
-                                            <h3 class="sous-titre">RECETTE</h3>
-                                            <p>${item.description}</p>
-                                        </div>
-                                        <p class="titre">INGREDIENTS</p>
-                                        <div class="ingredients">${html}</div>
-                                    </div>
-                                </div>`;
-        
-
-    });
-    setIngredientsList(recettes);
-    setAppareilsList(recettes);
-    setUstensilsList(recettes);
+    display.innerHTML="";
+    const recipeModel = afficherRecettes(recettes);
+    display.innerHTML += recipeModel.createRecipeCard();
+    const setList = setLists(recettes);
+    setList.setIngredientsList();
+    setList.setAppareilsList();
+    setList.setUstensilsList();
     displayRecipesNumber(recettes.length);
-    }
 }
 displayRecipes(recipes);
 
-// remplir la liste d'option Ingrédient 
-function setIngredientsList(list) {
-    let listeIngredient = []
-    list.forEach(element => element.ingredients.forEach(element =>{
-        if(listeIngredient.indexOf(element.ingredient.toLowerCase())<0){
-            listeIngredient.push(element.ingredient.toLowerCase());
-        }
-    }));    
-    fillOptionList(".contenaireIngredients",listeIngredient,"ingredients");
-    filterOptionListe(".ingredientsInput",".contenaireIngredients",listeIngredient,"ingedients");
-    selectedOption();
-}
-// remplir la liste d'option Appareils
-function setAppareilsList (list){
-    let listeAppareils = []
-    list.forEach(element =>{
-        if(listeAppareils.indexOf(element.appliance.toLowerCase())<0){
-            listeAppareils.push(element.appliance.toLowerCase());
-        }
-    });
-    fillOptionList(".contenaireAppareils",listeAppareils,"appareils");
-    filterOptionListe(".appareilsInput",".contenaireAppareils",listeAppareils,"appareils");
-    selectedOption();
-}
-// remplir la liste d'option ustensils
-function setUstensilsList (list){
-    let listeUstensils = []
-    list.forEach(element =>{
-        element.ustensils.forEach(element =>{
-            if(listeUstensils.indexOf(element.toLocaleLowerCase())<0){
-                listeUstensils.push(element.toLocaleLowerCase())
-            }
-        })
-    });
-    fillOptionList(".contenaireUstensils",listeUstensils,"ustensiles");
-    filterOptionListe(".ustensilesInput",".contenaireUstensils",listeUstensils,"ustensiles");
-    selectedOption();
-}
-
-// remplir une liste déroulante 
-function fillOptionList (optionListName,options,optionListClass){
-    let customOptionsDisplay = document.querySelector(optionListName);
-    customOptionsDisplay.innerHTML = "";
-    options.forEach(option => customOptionsDisplay.innerHTML+=`<span class="custom-option ${optionListClass}" data-value="${option}">${option}</span>`);
-}
-
-// ouvrir ou fermer une liste 
+// ouvrir ou fermer une liste déroulante pérsonnalisé
 function gererListe (select__trigger, select){
     let filtreListe = document.querySelector(".liste-filtre");
 
@@ -115,16 +42,6 @@ gererListe(".appareils",".select-appareils");
 gererListe(".ustensiles",".select-ustensiles");
 
 
-
-
-// filtrer la liste d'option 
-function filterOptionListe (TextName,optionListName,listeToFilter,params) {
-    document.querySelector(TextName).addEventListener("input",function(){
-        let liste = listeToFilter.filter(item => item.toLowerCase().indexOf(this.value.toLowerCase()) > -1);
-        fillOptionList(optionListName,liste,params);
-        selectedOption()
-    })
-}
 // chercher un element dans une liste selon attribut
 
 // chercher une element dans une liste 
@@ -187,10 +104,10 @@ function filterRecipes () {
         }
         if (newList.length>0){
             displayRecipes(newList);
-            setIngredientsList(newList);
-            setAppareilsList(newList);
-            setUstensilsList(newList);
-            selectedOption();
+            // setIngredientsList(newList);
+            // setAppareilsList(newList);
+            // setUstensilsList(newList);
+            // selectedOption();
         }else{
             document.querySelector(".displayRecipes").innerHTML=`<h1 class="notFound">Aucune recette ne contient '${this.value}' vous pouvez recherchez &lt;&lt; tarte aux pommes &gt;&gt;, &lt;&lt;poisson&gt;&gt;, etc.</h1>`
         }
@@ -228,7 +145,7 @@ function closeFilter(){
 }
 
 var filterTab = [];
-function selectedOption (){
+export function selectedOption (){
     let option = document.querySelectorAll(".custom-option");
     option.forEach(element => {
         element.addEventListener("click",function (){
@@ -241,7 +158,6 @@ function selectedOption (){
         })
     })
 }
-
 selectedOption();
 
 // chercher les element du tableau dans la liste 
