@@ -144,22 +144,30 @@ function searchBy (list,listElement,searchelement) {
     let liste =[]
     switch (listElement) {
         case "ingredients":
-            list.forEach(recipe => {
-                recipe.ingredients.forEach(ingredient=>{
-                    if (ingredient.ingredient.toLowerCase() === searchelement) {
-                        liste.push(recipe);
+            for(let i=0; i<list.length;i++){
+                for(let j=0; j<list[i].ingredients.length;j++){
+                    if(list[i].ingredients[j].ingredient.toLocaleLowerCase() === searchelement){
+                        liste.push(list[i]);
                     }
-                })
-            });
+                }
+            }
             break;
         case "appareils" :
             liste = list.filter(item => item.appliance.toLowerCase().indexOf(searchelement)> -1);
             break;
         case "description" :
-            liste = list.filter(item => item.description.toLowerCase().indexOf(searchelement)> -1);
+            for(let i=0; i<list.length;i++){
+                if(list[i].description.toLocaleLowerCase().indexOf(searchelement) > -1){
+                    liste.push(list[i]);
+                }
+            }
             break;
         case "name" :
-            liste = list.filter(item => item.name.toLowerCase().indexOf(searchelement)> -1);
+            for(let i=0; i<list.length;i++){
+                if(list[i].name.toLocaleLowerCase().indexOf(searchelement) > -1){
+                    liste.push(list[i]);
+                }
+            }
             break;
         case "ustensils" :
             list.filter(item =>{
