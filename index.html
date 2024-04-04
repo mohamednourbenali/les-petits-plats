@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script type="module" src="./scripts/index.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <header class="headerClass">
+      <img src="./media/recettes/background.jpg" class="background-image"/>
+        <div class="img-header">
+          <img src="./media/icons/Les petits plats.svg"/>
+          <img src="./media/icons/Group 3.svg"/>
+        </div>  
+        <img src="./media/icons/CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES.svg" />
+        <div class="barre-rechercher">
+          <input type="text" class="searchZone"/>
+        <div class="loupe-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+        </div>
+    </header>
+    <main class="mainClass">
+        <div class="filter-zone"></div>
+        <div class="liste-filtre">
+            <div class="select-wrapper">
+                <div class="select select-ingredient">
+                  <div class="select__trigger ingredients"><span>Ingrédients</span>
+                    <div class="arrow"></div>
+                  </div>
+                  <div class="custom-options custom-ingredients">
+                    <input type="text" class="searchInput ingredientsInput"/>
+                    <div class="contenaireIngredients"></div>
+                  </div>
+                </div>
+            </div>
+            <div class="select-wrapper">
+                <div class="select select-appareils">
+                  <div class="select__trigger appareils"><span>Appareils</span>
+                    <div class="arrow"></div>
+                  </div>
+                  <div class="custom-options custom-appareils">
+                    <input type="text" class="searchInput appareilsInput"/>
+                    <div class="contenaireAppareils">
+                      <p>bonjour</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="select-wrapper">
+                <div class="select select-ustensiles">
+                  <div class="select__trigger ustensiles"><span>Ustensiles</span>
+                    <div class="arrow"></div>
+                  </div>
+                  <div class="custom-options custom-usetensiles">
+                    <input type="text" class="searchInput ustensilesInput"/>
+                    <div class="contenaireUstensils"></div>
+                  </div>
+                </div>
+            </div>
+            <div class="nombre-recette"></div>
+        </div>
+        <div class="filtreSelectionner"></div>
+        <div class="displayRecipes"></div>  
+    </main>
+    
+</body>
+</html>
