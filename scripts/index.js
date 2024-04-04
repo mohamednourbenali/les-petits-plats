@@ -45,14 +45,14 @@ gererListe(".ustensiles",".select-ustensiles");
 // chercher un element dans une liste selon attribut
 
 // chercher une element dans une liste 
-function filterList (chaine) {
+function filterList (element,liste) {
     let list = [];
-    if ((searchBy(recipes,"name",chaine)).length > 0){
-        list = searchBy(recipes,"name",chaine);
-    }else if ((searchBy(recipes,"description",chaine)).length > 0){
-        list = searchBy(recipes,"description",chaine);
-    }else if ((searchBy(recipes,"ingredients",chaine)).length > 0){
-        list = searchBy(recipes,"ingredients",chaine)
+    if ((searchBy(liste,"name",element)).length > 0){
+        list = searchBy(liste,"name",element);
+    }else if ((searchBy(liste,"description",element)).length > 0){
+        list = searchBy(liste,"description",element);
+    }else if ((searchBy(liste,"ingredients",element)).length > 0){
+        list = searchBy(liste,"ingredients",element)
     }
     return list;
 }
@@ -93,27 +93,22 @@ function searchBy (list,listElement,searchelement) {
 }
 
 // filtrer la liste des recette à partir du mot entrer dans la zone de recherche
-function filterRecipes () {
+function filterRecipes (liste) {
     let mainSearch = document.querySelector(".searchZone");
     mainSearch.addEventListener("input",function(){
         if(this.value.length >= 3){
-            // displayRecipes(filterList(this.value.toLowerCase()));
-            newList = filterList(this.value.toLowerCase());
+            newList = filterList(this.value.toLowerCase(),liste);
         }else{
-            newList = recipes
+            newList = liste;
         }
         if (newList.length>0){
             displayRecipes(newList);
-            // setIngredientsList(newList);
-            // setAppareilsList(newList);
-            // setUstensilsList(newList);
-            // selectedOption();
         }else{
             document.querySelector(".displayRecipes").innerHTML=`<h1 class="notFound">Aucune recette ne contient '${this.value}' vous pouvez recherchez &lt;&lt; tarte aux pommes &gt;&gt;, &lt;&lt;poisson&gt;&gt;, etc.</h1>`
         }
     })
 }
-filterRecipes();
+filterRecipes(newList);
 
 
 // afficher un filtre séléctionner 
@@ -154,6 +149,7 @@ export function selectedOption (){
             }
             newList=filterListByOptions(newList);
             displayRecipes(newList);
+            filterRecipes(newList)
             displaySelectedOptions();
         })
     })
