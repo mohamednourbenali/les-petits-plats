@@ -10,27 +10,26 @@
 </head>
 <body>
     <header class="headerClass">
-      <img src="./media/recettes/background.jpg" class="background-image"/>
-        <div class="img-header">
-          <img src="./media/icons/Les petits plats.svg"/>
-          <img src="./media/icons/Group 3.svg"/>
-        </div>  
-        <img src="./media/icons/CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES.svg" />
-        <div class="barre-rechercher">
-          <input type="text" class="searchZone"/>
+      <img src="./media/recettes/background.jpg" class="background-image" alt="image du site">
+      <div class="img-header">
+        <img src="./media/icons/Les_petits_plats.svg" alt="les petits plats">
+        <img src="./media/icons/Group_3.svg" alt="logo su site">
+      </div>  
+      <img src="./media/icons/CHERCHEZ_PARMI_PLUS_DE_1500_RECETTES.svg"  alt="CHERCHEZ PARMI PLUS DE 1500 RECETTES DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES">
+      <div class="barre-rechercher">
+        <input type="text" class="searchZone" placeholder="Rechercher une recette, un ingrédient, ..." aria-label="zone de recherche de recettes" >
         <div class="loupe-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
-        </div>
+      </div>
     </header>
     <main class="mainClass">
-        <div class="filter-zone"></div>
-        <div class="liste-filtre">
+        <nav class="liste-filtre">
             <div class="select-wrapper">
                 <div class="select select-ingredient">
                   <div class="select__trigger ingredients"><span>Ingrédients</span>
                     <div class="arrow"></div>
                   </div>
                   <div class="custom-options custom-ingredients">
-                    <input type="text" class="searchInput ingredientsInput"/>
+                    <input type="text" class="searchInput ingredientsInput">
                     <div class="contenaireIngredients"></div>
                   </div>
                 </div>
@@ -41,7 +40,7 @@
                     <div class="arrow"></div>
                   </div>
                   <div class="custom-options custom-appareils">
-                    <input type="text" class="searchInput appareilsInput"/>
+                    <input type="text" class="searchInput appareilsInput">
                     <div class="contenaireAppareils">
                       <p>bonjour</p>
                     </div>
@@ -54,15 +53,15 @@
                     <div class="arrow"></div>
                   </div>
                   <div class="custom-options custom-usetensiles">
-                    <input type="text" class="searchInput ustensilesInput"/>
+                    <input type="text" class="searchInput ustensilesInput">
                     <div class="contenaireUstensils"></div>
                   </div>
                 </div>
             </div>
             <div class="nombre-recette"></div>
-        </div>
-        <div class="filtreSelectionner"></div>
-        <div class="displayRecipes"></div>  
+        </nav>
+        <section class="filtreSelectionner"></section>
+        <section class="displayRecipes"></section>  
     </main>
     
 </body>

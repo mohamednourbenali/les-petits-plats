@@ -1,0 +1,14 @@
+{
+  "name": "les-petits-plats",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  },
+  "scripts": {
+    "lint": "eslint *.js"
+  }
+}

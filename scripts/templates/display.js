@@ -18,19 +18,19 @@ function afficherRecettes (data) {
                             </div>`;
                 }
             })
-            display += `  <div class="carte">
-                                        <div class="sticker">${item.time}min</div>
-                                        <img src="${item.image}" />
-                                        <div class="description">
-                                            <h2>${item.name}</h2>
-                                            <div class="description-recette">
-                                                <h3 class="sous-titre">RECETTE</h3>
-                                                <p>${item.description}</p>
-                                            </div>
-                                            <p class="titre">INGREDIENTS</p>
-                                            <div class="ingredients">${html}</div>
-                                        </div>
-                                    </div>`;
+            display += `<figure class="carte">
+                            <div class="sticker">${item.time}min</div>
+                            <img src="${item.image}"  alt="image de ${item.name}" />
+                            <div class="description">
+                                <figcaption><h2>${item.name}</h2></figcaption>
+                                <div class="description-recette">
+                                    <h3 class="sous-titre">RECETTE</h3>
+                                    <p>${item.description}</p>
+                                </div>            
+                                <p class="titre">INGREDIENTS</p>
+                                <div class="ingredients">${html}</div>
+                            </div>
+                        </figure>`;                
             });
         }
         return display;   

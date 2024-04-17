@@ -1,4 +1,3 @@
-
 import recipes from "../data/recipes.js";
 import afficherRecettes from "./templates/display.js";
 import setLists from "./utils/lists.js";
@@ -92,19 +91,33 @@ function searchBy (list,listElement,searchelement) {
     return liste;
 }
 
+// vérifier si une chaine contient une balise html
+function containTag (chaine){
+    const expression = /<("[^"]*"|'[^']*'|[^'">])*>/;
+    return expression.test(chaine);
+}
+
+//enlever les balises d'une chaine 
+function deleteTag (chaine){
+    return chaine.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
+}
 // filtrer la liste des recette à partir du mot entrer dans la zone de recherche
 function filterRecipes (liste) {
     let mainSearch = document.querySelector(".searchZone");
     mainSearch.addEventListener("input",function(){
-        if(this.value.length >= 3){
-            newList = filterList(this.value.toLowerCase(),liste);
+        let chaine = this.value;
+        if (containTag(chaine)){ 
+            chaine= deleteTag(chaine);
+        }
+        if(chaine.length >= 3){
+            newList = filterList(chaine.toLowerCase(),liste);
         }else{
             newList = liste;
         }
         if (newList.length>0){
             displayRecipes(newList);
         }else{
-            document.querySelector(".displayRecipes").innerHTML=`<h1 class="notFound">Aucune recette ne contient '${this.value}' vous pouvez recherchez &lt;&lt; tarte aux pommes &gt;&gt;, &lt;&lt;poisson&gt;&gt;, etc.</h1>`
+            document.querySelector(".displayRecipes").innerHTML=`<h1 class="notFound">Aucune recette ne contient '${chaine}' vous pouvez recherchez &lt;&lt; tarte aux pommes &gt;&gt;, &lt;&lt;poisson&gt;&gt;, etc.</h1>`
         }
     })
 }
