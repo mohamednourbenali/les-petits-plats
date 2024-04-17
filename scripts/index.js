@@ -162,7 +162,7 @@ export function selectedOption (){
             }
             newList=filterListByOptions(newList);
             displayRecipes(newList);
-            filterRecipes(newList)
+            filterRecipes(newList);
             displaySelectedOptions();
         })
     })
