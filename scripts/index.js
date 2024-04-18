@@ -192,3 +192,4 @@ function displayRecipesNumber (number) {
     let display = document.querySelector(".nombre-recette");
     display.innerHTML=`<h2>${number} Recettes</h2>`
 }
+ 
